@@ -1,9 +1,16 @@
-var array = ['pera','manzana','frutilla','naranja','kiwi'];
+var frutas = ['pera','manzana','frutilla','naranja','kiwi'];
 
-console.log(array[1]);
 
-function frutas()
-    for(i=0; i<array.length; i++)
-{
-    console.log(array[i])
+for (const fruta of frutas){
+    if (fruta == "manzana"){
+        console.log(fruta);
+    }
 }
+//console.log(frutas[1]);
+
+//function frutas()
+//    for(i=0; i<frutas.length; i++)
+//{
+ //   frutas.forEach(fruta => {console.log(fruta);})
+//}
+//console.log(array)
