@@ -17,12 +17,12 @@
                 characterList.appendChild(listItem);
             });
         })
-       // });*/
+       // });
  async function buscar() {
 
  let valor = document.getElementById('valor').value;
- let nom = document.getElementsByName('nombre');
- const url = `https://rickandmortyapi.com/api/character/`;
+ let nom = document.getElementsByName('nombre').innerHTML =data.name;
+ const url = `https://rickandmortyapi.com/api/character`;
 
 try{
 
@@ -37,4 +37,33 @@ document.getElementById('foto').scr = "";
 document.getElementById('nombre').textContent=`nombre: ${estado}`;
 }
 catch(error) {console.error("Error de solicitud")}
- }
+ }*/
+ async function obtenerPersonaje() {
+    const idPersonaje = document.getElementById('idInput').value;
+    const url = `https://rickandmortyapi.com/api/character/${idPersonaje}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        const nombre = data.name;
+        const foto = data.image;
+        const estado = data.status;
+
+        document.getElementById('nombre').textContent = `Nombre: ${nombre}`;
+        document.getElementById('foto').src = foto;
+        document.getElementById('estado').textContent = `Estado: ${estado}`;
+    } catch (error) {
+        console.error("Error al hacer la solicitud:", error);
+        document.getElementById('nombre').textContent = "Personaje no encontrado.";
+        document.getElementById('foto').src = "";
+        document.getElementById('estado').textContent = "";
+    }
+}
+ document.getElementById('estado').textContent = "";
+    
+
