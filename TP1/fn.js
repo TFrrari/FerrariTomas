@@ -1,24 +1,8 @@
-/*var frutas = ['pera','manzana','frutilla','naranja','kiwi'];
 
+//Mostrar personajes // document.addEventListener("DOMContentLoaded", () => {
+  //  const characterList = document.getElementById("character-list");
 
-for (const fruta of frutas){
-    if (fruta == "manzana"){
-        console.log(fruta);
-    }
-}
-//function frutas()
-//    for(i=0; i<frutas.length; i++)
-//{
- //   frutas.forEach(fruta => {console.log(fruta);})
-//}
-//console.log(array)
-//--
-//--
-//API Rick y morty*/
-document.addEventListener("DOMContentLoaded", () => {
-    const characterList = document.getElementById("character-list");
-
-    fetch("https://rickandmortyapi.com/api/character")
+    /*fetch("https://rickandmortyapi.com/api/character")
         .then(response => response.json())
         .then(data => {
             data.results.forEach(character => {
@@ -33,7 +17,53 @@ document.addEventListener("DOMContentLoaded", () => {
                 characterList.appendChild(listItem);
             });
         })
-        .catch(error => {
-            console.error("Error al obtener los datos:", error);
-        });
-});
+       // });
+ async function buscar() {
+
+ let valor = document.getElementById('valor').value;
+ let nom = document.getElementsByName('nombre').innerHTML =data.name;
+ const url = `https://rickandmortyapi.com/api/character`;
+
+try{
+
+const response= await fetch(url);
+const data= await response.json;
+const nombre = data.name;
+const estado = data.status;
+const foto = data.image;
+
+document.getElementById('nombre').textContent=`nombre: ${nombre}`;
+document.getElementById('foto').scr = "";
+document.getElementById('nombre').textContent=`nombre: ${estado}`;
+}
+catch(error) {console.error("Error de solicitud")}
+ }*/
+ async function obtenerPersonaje() {
+    const idPersonaje = document.getElementById('idInput').value;
+    const url = `https://rickandmortyapi.com/api/character/${idPersonaje}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        const nombre = data.name;
+        const foto = data.image;
+        const estado = data.status;
+
+        document.getElementById('nombre').textContent = `Nombre: ${nombre}`;
+        document.getElementById('foto').src = foto;
+        document.getElementById('estado').textContent = `Estado: ${estado}`;
+    } catch (error) {
+        console.error("Error al hacer la solicitud:", error);
+        document.getElementById('nombre').textContent = "Personaje no encontrado.";
+        document.getElementById('foto').src = "";
+        document.getElementById('estado').textContent = "";
+    }
+}
+ document.getElementById('estado').textContent = "";
+    
+
