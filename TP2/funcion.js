@@ -1,3 +1,4 @@
+
 function buscarMatch() {
     const id1 = document.getElementById('char1').value;
     const id2 = document.getElementById('char2').value;
@@ -11,6 +12,7 @@ function buscarMatch() {
                 return response.json();
             })
             .then(char1 => {
+                document.getElementById('imgChar1').src = char1.image;
                 return fetch(`https://rickandmortyapi.com/api/character/${id2}`)
                     .then(response => {
                         if (!response.ok) {
@@ -19,6 +21,8 @@ function buscarMatch() {
                         return response.json();
                     })
                     .then(char2 => {
+                        document.getElementById('imgChar2').src = char2.image;
+
                         const resultado = document.getElementById('resultado');
                         const imgResultado = document.getElementById('imgMatch');
 
@@ -43,3 +47,6 @@ function buscarMatch() {
         document.getElementById('imgMatch').src = '';
     }
 }
+
+
+
